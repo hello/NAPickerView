@@ -24,7 +24,7 @@ Custom PickerView
     [self.view addSubview:pickerView];
 ```
 
-### Example 2 : more setting for picker
+### Example 2 : more settings for picker
 ```
     items2 = @[@"Naruto", @"Kakashi", @"Sakura", @"Sasuke", @"Choji"];
     NAPickerView *pickerView2 = [[NAPickerView alloc] initWithFrame:CGRectMake(180.f, 10.f, 100.f, 200.f)
@@ -54,7 +54,7 @@ Custom PickerView
     [self.view addSubview:pickerView2];
 ```
 
-### Example 3 : can custom your cell. Show cell with image and label by following code
+### Example 3 : custom the cell of picker. Create the cell with an imageview and a label by following code
 ```
     // create item array
     items3 = [[NSMutableArray alloc] init];
