@@ -3,6 +3,11 @@
 Custom PickerView
 
 ## Instalation
+NAPickerView can be installed via CocoaPods.
+```
+pod 'NAPickerView'
+```
+or simply download and import NASources/*.{h,.m} in your project manually.
 
 ## ScreenShot
 ![image](https://raw.github.com/nghialv/NAPickerView/master/screenshot2.png)
