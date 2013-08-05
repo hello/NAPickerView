@@ -37,7 +37,6 @@
     for (int i = 0; i < 30;  i++) {
         [items addObject:[NSString stringWithFormat:@"%d", i]];
     }
-    
     // picker 1
     NAPickerView *pickerView = [[NAPickerView alloc] initWithFrame:CGRectMake(40.f, 10.f, 100.f, 200.f)
                                                           andItems:items
