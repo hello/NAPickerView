@@ -1,6 +1,6 @@
 ## NAPickerView
 
-custom pickerview
+Custom PickerView
 
 ## Instalation
 
@@ -9,7 +9,7 @@ custom pickerview
 
 ## Usage
 
-### Example 1: quickly create picker
+### Example 1: default picker
 ```
     // create item array
     items = [[NSMutableArray alloc] init];
@@ -20,7 +20,7 @@ custom pickerview
     NAPickerView *pickerView = [[NAPickerView alloc] initWithFrame:CGRectMake(40.f, 10.f, 100.f, 200.f)
                                                           andItems:items
                                                        andDelegate:self];
-    [pickerView setIndex:5];                            // init index
+    [pickerView setIndex:5];        // init index
     [self.view addSubview:pickerView];
 ```
 
