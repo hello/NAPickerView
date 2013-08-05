@@ -5,6 +5,8 @@ Custom PickerView
 ## Instalation
 
 ## ScreenShot
+![image](https://raw.github.com/nghialv/NAPickerView/master/screenshot2.png)
+
 ![image](https://raw.github.com/nghialv/NAPickerView/master/screenshot.png)
 
 ## Usage
