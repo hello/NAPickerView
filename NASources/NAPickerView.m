@@ -191,7 +191,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.items count];
+    return self.infiniteScrolling ? INT16_MAX : [self.items count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -204,11 +204,12 @@
                                                             reuseIdentifier:cellIdentifier
                                                                   cellWidth:self.tableView.bounds.size.width];
     }
-    
-    self.configureBlock(cell, [self.items objectAtIndex:indexPath.row]);
+    NSInteger actualRow = indexPath.row % self.items.count;
+    self.configureBlock(cell, [self.items objectAtIndex:actualRow]);
     if(indexPath.row == self.currentIndex.row) {
-        self.highlightBlock(cell);
-    } else {
+        if (self.highlightBlock)
+            self.highlightBlock(cell);
+    } else if (self.unhighlightBlock) {
         self.unhighlightBlock(cell);
     }
     return cell;
@@ -223,7 +224,7 @@
     CGFloat floatVal = targetContentOffset->y / rowHeight;
 	NSInteger rounded = (NSInteger)(lround(floatVal));
 	targetContentOffset->y = rounded * rowHeight;
-    [self.delegate didSelectedAtIndexDel:rounded];
+    [self.delegate didSelectedAtIndexDel:rounded % self.items.count];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -249,9 +250,11 @@
     }
     
     NAPickerCell *currentCell = (NAPickerCell *)[self.tableView cellForRowAtIndexPath:self.currentIndex];
-    self.unhighlightBlock(currentCell);
+    if (self.unhighlightBlock)
+        self.unhighlightBlock(currentCell);
     NAPickerCell *middleCell = (NAPickerCell *)[self.tableView cellForRowAtIndexPath:middleIndex];
-    self.highlightBlock(middleCell);
+    if (self.highlightBlock)
+        self.highlightBlock(middleCell);
     self.currentIndex = middleIndex;
 }
 
