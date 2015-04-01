@@ -36,6 +36,7 @@ typedef void (^NACellUnHighlightConfigureBlock)(id);
 @property (strong, nonatomic) UIColor *borderColor;
 @property (strong, nonatomic) UIColor *overlayColor;
 @property (assign, nonatomic) CGFloat cornerRadius;
+@property (assign, nonatomic) CGFloat cellHeight;
 
 - (id)initWithFrame:(CGRect)frame
            andItems:(NSArray *)items

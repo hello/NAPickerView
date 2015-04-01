@@ -15,6 +15,4 @@
     reuseIdentifier:(NSString *)reuseIdentifier
           cellWidth:(CGFloat)cellWidth;
 
-+ (CGFloat)cellHeight;
-
 @end

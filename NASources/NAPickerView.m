@@ -61,6 +61,7 @@
     self.items = items;
     self.delegate = delegate;
     self.cellClassName = className;
+    self.cellHeight = 70;
     
     self.tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
     self.tableView.delegate = self;
@@ -98,11 +99,6 @@
 - (CGFloat)headerHeight
 {
     return self.bounds.size.height/2 - [self cellHeight]/2;
-}
-
-- (CGFloat)cellHeight
-{
-    return [NSClassFromString(self.cellClassName) cellHeight];
 }
 
 - (void)setBorderWidth:(CGFloat)borderWidth

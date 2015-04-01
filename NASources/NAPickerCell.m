@@ -28,9 +28,4 @@
     return self;
 }
 
-+(CGFloat)cellHeight
-{
-    return 70;
-}
-
 @end

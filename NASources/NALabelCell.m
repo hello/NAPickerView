@@ -22,9 +22,10 @@
     return self;
 }
 
-+ (CGFloat)cellHeight
+- (void)layoutSubviews
 {
-    return 70.f;
+    [super layoutSubviews];
+    self.textView.frame = self.bounds;
 }
 
 @end
