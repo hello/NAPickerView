@@ -80,7 +80,7 @@
     
     self.configureBlock = ^(NALabelCell *cell, NSString *item) {
         [cell.textView setText:item];
-        cell.textView.textAlignment = UITextAlignmentCenter;
+        cell.textView.textAlignment = NSTextAlignmentCenter;
         cell.textView.font = [UIFont systemFontOfSize:30];
         cell.textView.backgroundColor = [UIColor clearColor];
         cell.textView.textColor = [UIColor grayColor];
@@ -123,7 +123,8 @@
 
 - (void)setIndex:(NSInteger)index
 {
-    self.currentIndex = [NSIndexPath indexPathForItem:index inSection:0];
+    NSInteger adjustedIndex = self.infiniteScrolling ? index + (self.items.count * 100) : index;
+    self.currentIndex = [NSIndexPath indexPathForItem:adjustedIndex inSection:0];
     [self.tableView scrollToRowAtIndexPath:self.currentIndex
                           atScrollPosition:UITableViewScrollPositionMiddle
                                   animated:NO];
@@ -137,6 +138,14 @@
     }
 }
 
+- (void)setOverlayColor:(UIColor *)overlayColor
+{
+    if (![_overlayColor isEqual:overlayColor]) {
+        _overlayColor = overlayColor;
+        self.overlay.backgroundColor = overlayColor;
+    }
+}
+
 - (void)setOverlayView
 {
     if (self.showOverlay) {
@@ -144,7 +153,7 @@
                                                                 self.frame.size.height/2 - [self cellHeight]/2,
                                                                 self.frame.size.width,
                                                                 [self cellHeight])];
-        self.overlay.backgroundColor = [UIColor grayColor];
+        self.overlay.backgroundColor = self.overlayColor ?: [UIColor grayColor];
         self.overlay.alpha = 0.5;
         self.overlay.userInteractionEnabled = NO;
         [self addSubview:self.overlay];

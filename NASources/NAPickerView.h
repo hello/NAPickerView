@@ -34,6 +34,7 @@ typedef void (^NACellUnHighlightConfigureBlock)(id);
 // backgroud color
 @property (assign, nonatomic) CGFloat borderWidth;
 @property (strong, nonatomic) UIColor *borderColor;
+@property (strong, nonatomic) UIColor *overlayColor;
 @property (assign, nonatomic) CGFloat cornerRadius;
 
 - (id)initWithFrame:(CGRect)frame
