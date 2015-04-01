@@ -128,11 +128,18 @@
 - (void)setIndex:(NSInteger)index
 {
     NSInteger adjustedIndex = self.infiniteScrolling ? index + (self.items.count * 100) : index;
+    if (adjustedIndex == self.currentIndex.row)
+        return;
     self.currentIndex = [NSIndexPath indexPathForItem:adjustedIndex inSection:0];
-    [self.tableView scrollToRowAtIndexPath:self.currentIndex
-                          atScrollPosition:UITableViewScrollPositionMiddle
-                                  animated:NO];
+    __weak typeof(self) weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf.tableView scrollToRowAtIndexPath:strongSelf.currentIndex
+                                    atScrollPosition:UITableViewScrollPositionMiddle
+                                            animated:NO];
+    });
 }
+
 
 - (void)setShowOverlay:(BOOL)showOverlay
 {
