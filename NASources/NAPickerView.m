@@ -96,6 +96,14 @@
     };
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    CGRect tableFrame = self.tableView.frame;
+    tableFrame.size.height = CGRectGetHeight(self.bounds);
+    self.tableView.frame = tableFrame;
+}
+
 - (CGFloat)headerHeight
 {
     return self.bounds.size.height/2 - [self cellHeight]/2;
